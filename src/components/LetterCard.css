@@ -1,0 +1,507 @@
+.body{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    background-color: pink;
+  }
+.logo-welcome{
+    display: flex;
+
+  }
+.logo-image{
+    margin: 10px;
+}
+.ToolbarText{
+    display: flex;
+    align-items: flex-end;
+    color: white;
+    font-size: 36px;
+    font-weight:600;
+    margin: 10px;
+}
+.navigation-link{
+    font-size: 24px;
+    margin: 10px 20px;
+    text-decoration: none;
+    color: white;
+}
+.navigation-link:hover{
+    text-shadow: 1px 1px 1px white;
+    cursor: pointer;
+}
+.navigation{
+    padding: 0 40px 0 0;
+    display: flex;
+    align-items: flex-end;
+    height: 80%;
+}
+.main_body{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    max-height: 100vh;
+}
+.game-field{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(245, 206, 213);
+}
+ul{
+    padding: 0;
+}
+.WordList{
+    color: white;
+    padding: 20px;
+    background-color: pink;
+    width: 20%;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+h3{
+    letter-spacing: 1.2px;
+    font-weight: 500;
+}
+.WordList-item{
+    font-size: 18px;
+    margin: 10px;
+}
+.ShowMeaning{
+    font-size: 18px;
+    color: white;
+    border: 0;
+    height: auto;
+    width: auto;
+    background-color: rgb(245, 126, 148);
+    border-radius: 45px;
+    margin: 0 0 0 10px;
+}
+.ShowMeaning:hover{
+    background-color: rgb(255, 73, 109);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.24), 0 5px 5px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+}
+.backdrop{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+.no-backdrop{
+    display: none;
+}
+
+.Definitions{
+    display: inline;
+    position: absolute;
+    background-color: pink;
+    width: 50%;
+}
+.ExitButton{
+    float: right;
+    background-color: pink;
+    border: 1px solid white;
+    color: white;
+    margin: 10px;
+}
+.main_box-started{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 80%;
+}
+.main_box{
+    display: none;
+    width: 80%;
+}
+.StartButton{
+    font-size: 46px;
+    color: white;
+    text-shadow: 1px 1px 1px white;
+    border: 2px solid white;
+    height: 25%;
+    width: 20%;
+    background-color: rgb(245, 126, 148);
+    border-radius: 45px;
+
+}
+.StartButton:hover{
+    background-color: rgb(255, 73, 109);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+  }
+
+.StartButton-started{
+    display: none;
+
+}
+.text-create{
+    color: white;
+    font-size: 36px;
+}
+
+.WordBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 20px;
+    border-bottom: 2px solid;
+    border-color: white;
+    width: 500px;
+    height: 100px;
+}
+.WordLetterCard{
+    display: block;
+    text-align: center;
+    height: auto;
+    width: 40px;
+    background-color: rgb(245, 206, 213);
+    border-bottom: 2px solid;
+    border-color: white;
+    margin: 10px 0 10px 0;
+    padding: 10px 10px 0 10px;
+    color: rgb(66, 153, 146);
+    font-size: 36px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.WordLetterCard:hover{
+    font-size: 42px;
+}
+
+.WordLetterCard-empty{
+    display: none;
+}
+.EnterButton{
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    font-size: 26px;
+    color: white;
+    border: 0;
+    height: auto;
+    width: auto;
+    background-color: rgb(245, 126, 126);
+    border-radius: 45px;
+}
+.EnterButton-green{
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    font-size: 26px;
+    color: white;
+    border: 0;
+    height: auto;
+    width: auto;
+    background-color: rgb(156, 206, 151);
+    border-radius: 45px;
+}
+.EnterButton-green:hover{
+    cursor: pointer;
+    background-color: rgb(90, 175, 77);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.24), 0 5px 5px 0 rgba(0,0,0,0.19);
+    font-size: 28px;
+    margin: 7px;
+}
+.EnterButton:hover{
+    background-color: rgb(247, 65, 65);
+}
+.EnterButton-none{
+    display: none;
+}
+
+.LetterBox{
+    display: flex;
+    flex-direction: row;
+    border: 2px solid white;
+    
+}
+.LetterCard{
+    display: block;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 80px;;
+    color: rgb(66, 150, 153);
+    height: 80px;
+    width: 80px;
+    background-color: rgb(242, 247, 174);
+    border: 1px solid;
+    border-color: white;
+    cursor: pointer;
+}
+.LetterCard:hover{
+    font-size: 42px;
+}
+.RandomizeButton{
+    font-size: 28px;
+    color: white;
+    background-color: pink;
+}
+.RandomizeButton:hover{
+background-color: rgb(250, 112, 140);
+cursor: pointer;
+}
+.NewGame{
+    font-size: 24px;
+    color: white;
+    border: 2px solid white;
+    height: 25%;
+    width: auto;
+    background-color: rgb(245, 126, 148);
+    border-radius: 45px;
+    margin: 20px;
+    padding: 10px;
+}
+.NewGame:hover{
+    background-color: rgb(255, 73, 109);
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24), 0 4px 5px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+  }
+
+.footer{
+    display: flex;
+    align-items: flex-end;
+    height: 50px;
+    justify-content: center;
+    background-color: pink;
+}
+@media only screen and (max-width: 600px) {
+    .main_body{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+    .StartButton{
+        font-size: 20px;
+        height: 10vh;
+        width: 50%;
+    }
+    .game-field{
+        order: 1;
+        width: 100%;
+        min-height: 75vh;
+    }
+    .WordList{
+        padding: 0;
+        margin: 0;
+        order: 2;
+        width: 100%;
+        flex: 1;
+    }
+    ul{
+        padding: 0 0 0 30px;
+    }
+    .header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+        width: 100%;
+        background-color: pink;
+      }
+    .logo-welcome{
+        display: flex;
+      }
+    .logo-image{
+        margin: 10px;
+    }
+    .ToolbarText{
+        display: flex;
+        align-items: flex-start;
+        color: white;
+        font-size: 16px;
+        font-weight:600;
+        margin: 10px;
+    }
+    .navigation-link{
+        font-size: 18px;
+        margin: 10px 10px;
+        text-decoration: none;
+        color: white;
+    }
+    .navigation-link:hover{
+        text-shadow: 1px 1px 1px white;
+        cursor: pointer;
+    }
+    .navigation{
+        padding: 20px 20px 0 0;
+        display: flex;
+        align-items: flex-end;
+        height: 80%;
+    }
+
+    h3{
+        margin: 10px 0 0 20px;
+    }
+    
+    .backdrop{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.4);
+    }
+   
+    .main_box-started{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        height: 50vh;
+    }
+    .main_box{
+        display: none;
+        width: 90%;
+    }
+
+    .text-create{
+        color: white;
+        font-size: 24px;
+    }
+    
+    .WordBox{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-end;
+        margin: 20px;
+        border-bottom: 2px solid;
+        border-color: white;
+        width: 100%;
+        height: 100px;
+    }
+    .WordLetterCard{
+        display: block;
+        text-align: center;
+        height: auto;
+        width: 20px;
+        background-color: rgb(245, 206, 213);
+        border-bottom: 2px solid;
+        border-color: white;
+        margin: 10px 0 10px 0;
+        padding: 10px 10px 0 10px;
+        color: rgb(66, 153, 146);
+        font-size: 24px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    .WordLetterCard:hover{
+        font-size: 24px;
+    }
+    
+    .WordLetterCard-empty{
+        display: none;
+    }
+    .EnterButton{
+        display: block;
+        margin: 10px;
+        padding: 10px;
+        font-size: 18px;
+        color: white;
+        border: 0;
+        height: auto;
+        width: auto;
+        background-color: rgb(245, 126, 126);
+        border-radius: 45px;
+    }
+    .EnterButton-green{
+        display: block;
+        margin: 10px;
+        padding: 10px;
+        font-size: 18px;
+        color: white;
+        border: 0;
+        height: auto;
+        width: auto;
+        background-color: rgb(156, 206, 151);
+        border-radius: 45px;
+    }
+    .EnterButton-green:hover{
+        cursor: pointer;
+        background-color: rgb(90, 175, 77);
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,0.24), 0 5px 5px 0 rgba(0,0,0,0.19);
+        font-size: 28px;
+        margin: 7px;
+    }
+    .EnterButton:hover{
+        background-color: rgb(247, 65, 65);
+    }
+    .EnterButton-none{
+        display: none;
+    }
+    
+    .LetterBox{
+        display: flex;
+        flex-direction: row;
+        border: 2px solid white;
+        width: 100%;
+        
+    }
+    .LetterCard{
+        display: block;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 40px;
+        color: rgb(66, 150, 153);
+        height: 40px;
+        width: 50px;
+        background-color: rgb(242, 247, 174);
+        border: 1px solid;
+        border-color: white;
+        cursor: pointer;
+    }
+    .LetterCard:hover{
+        font-size: 42px;
+    }
+    .RandomizeButton{
+        width: 22%;
+        font-size: 16px;
+        color: white;
+        background-color: pink;
+    }
+    .RandomizeButton:hover{
+    background-color: rgb(250, 112, 140);
+    cursor: pointer;
+    }
+    .NewGame{
+        font-size: 18px;
+        color: white;
+        border: 2px solid white;
+        height: auto;
+        width: auto;
+        background-color: rgb(245, 126, 148);
+        border-radius: 45px;
+        margin: 20px;
+        padding: 10px;
+    }
+    .NewGame:hover{
+        background-color: rgb(255, 73, 109);
+        box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24), 0 4px 5px 0 rgba(0,0,0,0.19);
+        cursor: pointer;
+      }
+    
+    .foorter{
+        position: relative bottom;
+    }
+ }
