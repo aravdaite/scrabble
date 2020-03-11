@@ -1,30 +1,32 @@
 import React, { Component } from 'react';
-import LetterCard from '../components/LetterCard';
-import WordLetterCard from '../components/WordLetterCard';
-import StartButton from '../components/buttons/StartButton';
-import RandomizeButton from '../components/buttons/RandomizeButton';
-import NewGame from '../components/buttons/NewGame';
-import EnterButton from '../components/buttons/EnterButton';
-import WordList from '../components/WordList';
-import Dictionary from 'oxford-dictionary';
+import { Button, WordList } from '../components';
 
-//instantiate dictionary as singleton
-const config = {
-    app_id: "b52d3e18",
-    app_key: "040d5c739fcb24d336b32814603df8eb",
-    source_lang: "en-us"
-};
+const vowels = 'AEIOUY';
+const consonants = 'BCDFGHJKLMNPQRSTVWXZ';
 
-const dict = new Dictionary(config);
+export const getWordData = (word) => {
+    return fetch(`https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=${word}`, {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "mashape-community-urban-dictionary.p.rapidapi.com",
+            "x-rapidapi-key": "wjZqL855a4msh34pawTk4IbaHwrwp1LcGUhjsnunhhQ0LrHrIG"
+        }
+    })
+        .then(response => response.json())
+        .then(({ list }) => list)
+        .catch(err => {
+            console.log(err);
+        });
+}
 
 class Scrabble extends Component {
 
     state = {
         letters: [], //mixed letters
         word: [], //word amde from letters
-        isWord: true, //set of letters in word is an actual word
+        isWord: false, //set of letters in word is an actual word
         letterPosition: [], //from which position the letter was added to form a word, so it can be returned to the same position
-        wordList: [ "hut", "pen", "trick"], //array of all made words
+        wordList: ["hut", "pen", "trick"], //array of all made words
         started: false
     }
 
@@ -34,34 +36,33 @@ class Scrabble extends Component {
         this.setState({
             letters: [],
             word: [],
-            isWord: true,
+            isWord: false,
             letterPosition: [],
             wordList,
             started: true
         })
-
         this.getLetters();
     }
+
     fillLetters = () => {
 
-        const vowels = 'AEIOUY';
-        const consonants = 'BCDFGHJKLMNPQRSTVWXZ';
         let letters = [...this.state.letters];
         let vowelsNum = 0;
         let emptyNum = 0;
         let randomVowelNum;
 
-        for (let i = 0; i < letters.length; i++) {
-            if (letters[i] === "A" || letters[i] === "E" || letters[i] === "I" || letters[i] === "O" || letters[i] === "U" || letters[i] === "Y") {
+        letters.forEach(letter => {
+            if (letter === "A" || letter === "E" || letter === "I" || letter === "O" || letter === "U" || letter === "Y") {
                 vowelsNum++;
-            } else if (letters[i] === "") {
+            } else if (letter === "") {
                 emptyNum++;
             }
-        }
+        })
 
-        Math.random() < 0.5 ? randomVowelNum = 3 : randomVowelNum = 2;
+        Math.random() < 0.5 ? randomVowelNum = 3 : Math.random() < 0.5 ? randomVowelNum = 2 : randomVowelNum = 4;
 
         for (let m = randomVowelNum - vowelsNum; m > 0; m--) {
+
             for (let i = 0; i < letters.length; i++) {
                 if (letters[i] === "") {
                     letters[i] = vowels.charAt(Math.floor(Math.random() * 5));
@@ -80,7 +81,7 @@ class Scrabble extends Component {
             }
         }
 
-        this.setState({ letters: letters });
+        this.setState({ letters });
     }
 
     enterWord = () => {
@@ -98,23 +99,11 @@ class Scrabble extends Component {
     }
 
     validateWord = (array) => {
-
-        let word = array;
-        word = word.join('');
-
-        const props = {
-            word: word,
-            filter: "lexicalCategory=noun, verb, adjective, adverb, pronoun"
-            // region: "us",
-            // target_language: "es"
-        };
+        const word = array.join('');
         if (word !== "") {
-            const lookup = dict.find(props);
-
-            lookup.then((res) => this.setState({ isWord: true }, () => console.log(this.state.isWord, res)))
-                .catch((err) => this.setState({ isWord: false }, () => console.log(this.state.isWord, err)))
-
+            return getWordData(word).then((list = []) => this.setState({ isWord: Array.isArray(list) && list.length > 0 }))
         }
+        this.setState({ isWord: false })
     }
 
     removeFromArray = (array, index) => {
@@ -143,7 +132,7 @@ class Scrabble extends Component {
         }
     }
 
-    removeLetterToWord = (index) => {
+    removeLetterFromWord = (index) => {
 
         if (index < this.state.word.length) {
 
@@ -199,8 +188,6 @@ class Scrabble extends Component {
         let numVowels;
         let numConsonants;
 
-        const vowels = 'AEIOUY';
-        const consonants = 'BCDFGHJKLMNPQRSTVWXZ';
         let charactersLength = vowels.length;
 
         if (Math.random() > 0.5) {
@@ -241,30 +228,23 @@ class Scrabble extends Component {
             <div className="main_body">
                 <WordList words={this.state.wordList} />
                 <div className="game-field">
-                    <StartButton started={this.state.started} start={this.getLetters} />
+                    <Button type="start" started={this.state.started} onClick={this.getLetters} />
                     <div className={this.state.started ? "main_box-started" : "main_box"}>
                         <p className="text-create"> Create a word!</p>
                         <div className="WordBox">
-                            <WordLetterCard letter={this.state.word[0]} click={() => this.removeLetterToWord(0)} />
-                            <WordLetterCard letter={this.state.word[1]} click={() => this.removeLetterToWord(1)} />
-                            <WordLetterCard letter={this.state.word[2]} click={() => this.removeLetterToWord(2)} />
-                            <WordLetterCard letter={this.state.word[3]} click={() => this.removeLetterToWord(3)} />
-                            <WordLetterCard letter={this.state.word[4]} click={() => this.removeLetterToWord(4)} />
-                            <WordLetterCard letter={this.state.word[5]} click={() => this.removeLetterToWord(5)} />
-                            <WordLetterCard letter={this.state.word[6]} click={() => this.removeLetterToWord(6)} />
-                            <EnterButton enter={this.enterWord} word={this.state.word[0]} clickable={this.state.isWord} />
+                            {[...Array(7).keys()].map((index) =>
+                                <Button type="wordLetterCard"
+                                    letter={this.state.word[index]}
+                                    onClick={() => this.removeLetterFromWord(index)} />)}
+                            <Button type="enter" onClick={this.enterWord} word={this.state.word[0]} clickable={this.state.isWord} />
                         </div>
                         <div className="LetterBox">
-                            <LetterCard letter={this.state.letters[0]} click={() => this.putLetterToWord(0)} />
-                            <LetterCard letter={this.state.letters[1]} click={() => this.putLetterToWord(1)} />
-                            <LetterCard letter={this.state.letters[2]} click={() => this.putLetterToWord(2)} />
-                            <LetterCard letter={this.state.letters[3]} click={() => this.putLetterToWord(3)} />
-                            <LetterCard letter={this.state.letters[4]} click={() => this.putLetterToWord(4)} />
-                            <LetterCard letter={this.state.letters[5]} click={() => this.putLetterToWord(5)} />
-                            <LetterCard letter={this.state.letters[6]} click={() => this.putLetterToWord(6)} />
-                            <RandomizeButton randomize={this.shuffleLetters} />
+                            {[...Array(7).keys()].map((index) =>
+                                <Button type="letterCard" letter={this.state.letters[index]}
+                                    onClick={() => this.putLetterToWord(index)} />)}
+                            <Button type="randomize" onClick={this.shuffleLetters} />
                         </div>
-                        <NewGame onClick={this.newGame} />
+                        <Button type="newGame" onClick={this.newGame} />
                     </div>
                 </div>
             </div>

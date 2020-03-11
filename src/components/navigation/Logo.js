@@ -1,11 +1,4 @@
 import React from 'react';
-import Logo from './words.png';
+import logo from './words.png';
 
-
-const logo = (props) => (
-
-    <img src={Logo} className="logo-image" />
-
-);
-
-export default logo;
+export const Logo = () => <img src={logo} alt="Logotype" className="logo-image" />

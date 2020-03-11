@@ -1,18 +1,12 @@
 import React from 'react';
-import './App.css';
+import './components/LetterCard.css'
 import Scrabble from './containers/Scrabble';
-import Toolbar from './components/navigation/Toolbar';
-import Footer from './components/Footer';
+import { Toolbar, Footer } from './components'
 
-function App() {
-  return (
-    <div className="body">
-      <Toolbar />
-      <Scrabble />
-      <Footer />
-
-    </div>
-  );
-}
-
-export default App;
+export const App = () => (
+  <div className="body">
+    <Toolbar />
+    <Scrabble />
+    <Footer />
+  </div>
+)
