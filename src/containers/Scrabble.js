@@ -3,17 +3,13 @@ import { Button, WordList } from '../components';
 
 const vowels = 'AEIOUY';
 const consonants = 'BCDFGHJKLMNPQRSTVWXZ';
+const key = "ee45ee9d-510f-4b5e-81f1-7bb7f90d3ffe";
 
 export const getWordData = (word) => {
-    return fetch(`https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=${word}`, {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "mashape-community-urban-dictionary.p.rapidapi.com",
-            "x-rapidapi-key": "wjZqL855a4msh34pawTk4IbaHwrwp1LcGUhjsnunhhQ0LrHrIG"
-        }
+    return fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${key}`, {
+        "method": "GET"
     })
         .then(response => response.json())
-        .then(({ list }) => list)
         .catch(err => {
             console.log(err);
         });
@@ -23,15 +19,34 @@ class Scrabble extends Component {
 
     state = {
         letters: [], //mixed letters
-        word: [], //word amde from letters
+        word: [], //word made from letters
         isWord: false, //set of letters in word is an actual word
         letterPosition: [], //from which position the letter was added to form a word, so it can be returned to the same position
         wordList: ["hut", "pen", "trick"], //array of all made words
         started: false
     }
 
-    newGame = () => {
+    checkKey = (e) => {
+        const { letters } = this.state
+        if (e.keyCode === 8) {
+            let word = [...this.state.word]
+            if (word !== 0) {
+                this.removeLetterFromWord(0);
+            }
+        } else if (e.keyCode === 13) {
+            e.preventDefault();
+            this.enterWord();
+        }
+        for (let i = 65; i < 91; i++) {
+            if (e.keyCode === i && letters.includes(String.fromCharCode(i))) {
+                const index = letters.indexOf(String.fromCharCode(i));
+                this.putLetterToWord(index);
+            }
+        }
 
+    }
+
+    newGame = () => {
         const wordList = [...this.state.wordList];
         this.setState({
             letters: [],
@@ -101,9 +116,14 @@ class Scrabble extends Component {
     validateWord = (array) => {
         const word = array.join('');
         if (word !== "") {
-            return getWordData(word).then((list = []) => this.setState({ isWord: Array.isArray(list) && list.length > 0 }))
+            return getWordData(word).then(res => {
+                if (res[0].fl === undefined) {
+                    this.setState({ isWord: false })
+                } else {
+                    this.setState({ isWord: true })
+                }
+            })
         }
-        this.setState({ isWord: false })
     }
 
     removeFromArray = (array, index) => {
@@ -127,14 +147,14 @@ class Scrabble extends Component {
             letterPosition.push(index);
             letters[index] = '';
 
-            this.setState({ word, letterPosition, letters });
+            this.setState({ word, letterPosition, letters }, () => console.log("runs put letter"));
             this.validateWord(word);
         }
     }
 
     removeLetterFromWord = (index) => {
 
-        if (index < this.state.word.length) {
+        if (index < this.state.word.length && this.state.word.length > 0) {
 
             const word = [...this.state.word];
             const letterPosition = [...this.state.letterPosition];
@@ -177,7 +197,7 @@ class Scrabble extends Component {
             }
         }
 
-        this.setState({ letters: letters });
+        this.setState({ letters: letters, isWord: false });
     }
 
     getLetters = () => {
@@ -224,7 +244,9 @@ class Scrabble extends Component {
     }
 
     render() {
+        document.onkeydown = this.checkKey;
         return (
+
             <div className="main_body">
                 <WordList words={this.state.wordList} />
                 <div className="game-field">

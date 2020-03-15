@@ -45,6 +45,8 @@
 .navigation-list {
     display: flex;
     list-style-type: none;
+    margin: 0;
+    padding: 0 0 10px 0;
 }
 .main_body{
     display: flex;
@@ -109,21 +111,35 @@ h3{
 }
 
 .Definitions{
-    padding: 0 0 0 30px;
+    padding: 0;
     display: inline;
     position: absolute;
     background-color: pink;
     width: 50%;
     max-height: 80%;
     overflow: scroll;
-
+}
+.Definitions__strong {
+    text-transform: capitalize;
+    line-height: 32px;
+}
+.Definitions__ul1 {
+    list-style-type: none;
+}
+.Definitions__ul2 {
+    padding: 0 0 0 20px;
 }
 .ExitButton{
     float: right;
     background-color: pink;
-    border: 1px solid white;
+    border: 2px solid white;
     color: white;
     margin: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    font-weight: 700;
 }
 .main_box-started{
     display: flex;
@@ -177,7 +193,7 @@ h3{
     display: block;
     text-align: center;
     height: auto;
-    width: 40px;
+    width: auto;
     background-color: rgb(245, 206, 213);
     border-bottom: 2px solid;
     border-color: white;

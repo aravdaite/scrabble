@@ -4,16 +4,34 @@ import { getWordData } from '../containers/Scrabble'
 
 export class WordList extends Component {
     state = {
+        categories: [],
         definitions: [],
         modalOpened: false
     }
 
-    openModal = () => this.setState({ modalOpened: true })
+    checkKeyEsc = (e) => {
+        if (e.keyCode === 27) {
+            this.setState({ modalOpened: false })
+        }
+    }
+
+    openModal = () => {
+        this.setState({ modalOpened: true })
+        document.onkeydown = this.checkKeyEsc;
+    }
     closeModal = () => this.setState({ modalOpened: false })
 
     getWordDesc = (word) => {
-        getWordData(word).then(list => this.setState({ definitions: list }))
+        const categories = [];
+        const definitions = [];
 
+        getWordData(word).then(response => {
+            response.forEach(res => {
+                categories.push(res.fl)
+                definitions.push(res.shortdef)
+            })
+            this.setState({ categories, definitions }, console.log(categories, definitions))
+        })
     }
 
     showWordDescription = (word) => {
@@ -27,7 +45,7 @@ export class WordList extends Component {
 
     render() {
         const { words } = this.props
-        const { modalOpened, definitions } = this.state
+        const { modalOpened, definitions, categories } = this.state
         const wordsList = words
             .map(word => (
                 <li className="WordList-item" key={word}>
@@ -38,13 +56,13 @@ export class WordList extends Component {
             )
 
         return (
-            <div className="WordList">
+            <div className="WordList" >
                 <h3>Words You've Made! </h3>
                 <ul>
                     {wordsList}
                 </ul>
                 <div className={modalOpened ? "backdrop" : "no-backdrop"}>
-                    <Definitions definitions={definitions}
+                    <Definitions definitions={definitions} categories={categories}
                         onClick={this.clearModal} />
                 </div>
             </div>
