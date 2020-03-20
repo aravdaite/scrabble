@@ -50,7 +50,7 @@ export class WordList extends Component {
         const { modalOpened, definitions, categories } = this.state
         const wordsList = words
             .map(word => (
-                <li className="WordList-item" key={word}>
+                <li className="WordList__item" key={word}>
                     {word.toLowerCase()}
                     <Button type="showMeaning" onClick={() => this.showWordDescription(word)} />
                 </li>

@@ -3,35 +3,35 @@ import React from 'react';
 const getButtonType = ({ type = '', ...rest }) => {
     const buttonDictionary = {
         enter: {
-            className: rest.word ? rest.clickable ? "EnterButton-green" : "EnterButton" : "EnterButton-none",
+            className: rest.word ? rest.clickable ? "Button__enter-green" : "Button__enter" : "Button__enter-none",
             text: 'Enter!'
         },
         exit: {
-            className: 'ExitButton',
+            className: 'Button__exit',
             text: 'X'
         },
         newGame: {
-            className: 'NewGame',
+            className: 'Button__newGame',
             text: 'New Set of Letters'
         },
-        randomize: {
-            className: 'RandomizeButton',
+        shuffle: {
+            className: 'Button__shuffle',
             text: 'Shuffle!'
         },
         showMeaning: {
-            className: 'ShowMeaning',
+            className: 'Button__ShowMeaning',
             text: 'Show Meaning!'
         },
         start: {
-            className: rest.started ? "StartButton-started" : "StartButton",
+            className: rest.started ? "Button__start-started" : "Button__start",
             text: 'Start Game!'
         },
         letterCard: {
-            className: 'LetterCard',
+            className: 'Button__LetterCard',
             text: rest.letter
         },
         wordLetterCard: {
-            className: rest.letter ? "WordLetterCard" : "WordLetterCard-empty",
+            className: rest.letter ? "Button__WordLetterCard" : "Button__WordLetterCard-empty",
             text: rest.letter
         }
     }

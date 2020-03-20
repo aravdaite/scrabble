@@ -205,24 +205,24 @@ class Scrabble extends Component {
 
     render() {
         return (
-            <div className="main_body">
+            <div className="Scrabble__mainBody">
                 <WordList words={this.state.wordList} />
-                <div className="game-field">
+                <div className="Scrabble__gameField">
                     <Button type="start" started={this.state.started} onClick={this.getLetters} />
-                    <div className={this.state.started ? "main_box-started" : "main_box"}>
-                        <p className="text-create"> Create a word!</p>
-                        <div className="WordBox">
+                    <div className={this.state.started ? "Scrabble__mainBox-started" : "Scrabble__mainBox"}>
+                        <p className="Scrabble__title"> Create a word!</p>
+                        <div className="Scrabble__WordBox">
                             {[...Array(7).keys()].map((index) =>
                                 <Button type="wordLetterCard"
                                     letter={this.state.word[index]}
                                     onClick={() => this.removeLetterFromWord(index)} />)}
                             <Button type="enter" onClick={this.enterWord} word={this.state.word[0]} clickable={this.state.isWord} />
                         </div>
-                        <div className="LetterBox">
+                        <div className="Scrabble__LetterBox">
                             {[...Array(7).keys()].map((index) =>
                                 <Button type="letterCard" letter={this.state.letters[index]}
                                     onClick={() => this.putLetterToWord(index)} />)}
-                            <Button type="randomize" onClick={this.shuffleLetters} />
+                            <Button type="shuffle" onClick={this.shuffleLetters} />
                         </div>
                         <Button type="newGame" onClick={this.newGame} />
                     </div>

@@ -15,7 +15,7 @@
   display: flex;
 
 }
-.logo-image{
+.Logo{
   margin: 10px;
 }
 .ToolbarText{
@@ -26,7 +26,7 @@
   font-weight:600;
   margin: 10px;
 }
-.navigation-link{
+.NavigationItem{
   font-size: 24px;
   margin: 10px 20px;
   text-decoration: none;
@@ -48,22 +48,20 @@
   margin: 0;
   padding: 0 0 10px 0;
 }
-.main_body{
+.Scrabble__mainBody{
   display: flex;
   flex-direction: row;
   flex: 1;
   max-height: 100vh;
 }
-.game-field{
+.Scrabble__gameField{
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   background-color: rgb(245, 206, 213);
 }
-ul{
-  padding: 10px;
-}
+
 .WordList{
   color: white;
   padding: 20px;
@@ -76,11 +74,11 @@ h3{
   letter-spacing: 1.2px;
   font-weight: 500;
 }
-.WordList-item{
+.WordList__item{
   font-size: 18px;
   margin: 10px;
 }
-.ShowMeaning{
+.Button__ShowMeaning{
   font-size: 18px;
   color: white;
   border: 0;
@@ -90,7 +88,7 @@ h3{
   border-radius: 45px;
   margin: 0 0 0 10px;
 }
-.ShowMeaning:hover{
+.Button__ShowMeaning:hover{
   background-color: rgb(255, 73, 109);
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.24), 0 5px 5px 0 rgba(0,0,0,0.19);
   cursor: pointer;
@@ -117,7 +115,7 @@ h3{
   background-color: pink;
   width: 50%;
   max-height: 80%;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 .Definitions__strong {
   text-transform: capitalize;
@@ -129,7 +127,7 @@ h3{
 .Definitions__ul2 {
   padding: 0 0 0 20px;
 }
-.ExitButton{
+.Button__exit{
   float: right;
   background-color: pink;
   border: 2px solid white;
@@ -141,18 +139,22 @@ h3{
   height: 30px;
   font-weight: 700;
 }
-.main_box-started{
-  display: flex;
+.Button__start-started{
+  display: none;
   flex-direction: column;
   align-items: center;
-
   width: 80%;
 }
-.main_box{
+.Scrabble__mainBox{
   display: none;
-  width: 80%;
 }
-.StartButton{
+.Scrabble__mainBox-started{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+  }
+.Button__start{
   font-size: 46px;
   color: white;
   text-shadow: 1px 1px 1px white;
@@ -163,22 +165,22 @@ h3{
   border-radius: 45px;
 
 }
-.StartButton:hover{
+.Button__start:hover{
   background-color: rgb(255, 73, 109);
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   cursor: pointer;
 }
 
-.StartButton-started{
+.Button__start-started{
   display: none;
 
 }
-.text-create{
+.Scrabble__title{
   color: white;
   font-size: 36px;
 }
 
-.WordBox{
+.Scrabble__WordBox{
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -189,7 +191,7 @@ h3{
   width: 500px;
   height: 100px;
 }
-.WordLetterCard{
+.Button__WordLetterCard{
   display: block;
   text-align: center;
   height: auto;
@@ -207,14 +209,14 @@ h3{
   border-right: none;
   border-left: none;
 }
-.WordLetterCard:hover{
+.Button__WordLetterCard:hover{
   font-size: 42px;
 }
 
-.WordLetterCard-empty{
+.Button__WordLetterCard-empty{
   display: none;
 }
-.EnterButton{
+.Button__enter{
   display: block;
   margin: 10px;
   padding: 10px;
@@ -226,7 +228,7 @@ h3{
   background-color: rgb(245, 126, 126);
   border-radius: 45px;
 }
-.EnterButton-green{
+.Button__enter-green{
   display: block;
   margin: 10px;
   padding: 10px;
@@ -238,27 +240,27 @@ h3{
   background-color: rgb(156, 206, 151);
   border-radius: 45px;
 }
-.EnterButton-green:hover{
+.Button__enter-green:hover{
   cursor: pointer;
   background-color: rgb(90, 175, 77);
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.24), 0 5px 5px 0 rgba(0,0,0,0.19);
   font-size: 28px;
   margin: 7px;
 }
-.EnterButton:hover{
+.Button__enter:hover{
   background-color: rgb(247, 65, 65);
 }
-.EnterButton-none{
+.Button__enter-none{
   display: none;
 }
 
-.LetterBox{
+.Scrabble__LetterBox{
   display: flex;
   flex-direction: row;
   border: 2px solid white;
   
 }
-.LetterCard{
+.Button__LetterCard{
   display: block;
   text-align: center;
   font-size: 36px;
@@ -272,19 +274,19 @@ h3{
   border-color: white;
   cursor: pointer;
 }
-.LetterCard:hover{
+.Button__LetterCard:hover{
   font-size: 42px;
 }
-.RandomizeButton{
+.Button__shuffle{
   font-size: 28px;
   color: white;
   background-color: pink;
 }
-.RandomizeButton:hover{
+.Button__shuffle:hover{
 background-color: rgb(250, 112, 140);
 cursor: pointer;
 }
-.NewGame{
+.Button__newGame{
   font-size: 24px;
   color: white;
   border: 2px solid white;
@@ -295,7 +297,7 @@ cursor: pointer;
   margin: 20px;
   padding: 10px;
 }
-.NewGame:hover{
+.Button__newGame:hover{
   background-color: rgb(255, 73, 109);
   box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24), 0 4px 5px 0 rgba(0,0,0,0.19);
   cursor: pointer;
@@ -313,15 +315,15 @@ cursor: pointer;
       height: 64px;
       margin: 10px;
   }
-  .main_body{
+  .Scrabble__mainBody{
       flex-direction: column;
   }
-  .StartButton{
+  .Button__start{
       font-size: 20px;
       height: 10vh;
       width: 50%;
   }
-  .game-field{
+  .Scrabble__gameField{
       order: 1;
       min-height: 75vh;
   }
@@ -340,7 +342,7 @@ cursor: pointer;
   .ToolbarText{
       font-size: 16px;
   }
-  .navigation-link{
+  .NavigationItem{
       font-size: 18px;
   }
 
@@ -352,51 +354,51 @@ cursor: pointer;
       margin: 10px 0 0 20px;
   }
 
-  .main_box-started{
+  .Scrabble__mainBox-started{
       width: 90%;
       height: 50vh;
   }
-  .main_box{
+  .Scrabble__mainBox{
       width: 90%;
   }
 
-  .text-create{
+  .Scrabble__title{
       font-size: 24px;
   }
   
-  .WordBox{
+  .Scrabble__WordBox{
       width: 100%;
   }
-  .WordLetterCard{
+  .Button__WordLetterCard{
       width: auto;
       font-size: 24px;
   }
-  .WordLetterCard:hover{
+  .Button__WordLetterCard:hover{
       font-size: 24px;
   }
 
-  .EnterButton{
+  .Button__enter{
       font-size: 18px;
   }
-  .EnterButton-green{
+  .Button__enter-green{
       font-size: 18px;
   }
   
-  .LetterBox{
+  .Scrabble__LetterBox{
       width: 100%;     
   }
-  .LetterCard{
+  .Button__LetterCard{
       font-size: 24px;
       line-height: 40px;
       height: 40px;
       width: 50px;
   }
 
-  .RandomizeButton{
+  .Button__shuffle{
       font-size: 16px;
   }
 
-  .NewGame{
+  .Button__newGame{
       font-size: 18px;
       height: auto;
   }
