@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Button, Definitions } from '../components'
+import { Button, Definitions, Spinner } from '../components'
 import { getWordData } from '../containers/Scrabble'
 
 export class WordList extends Component {
     state = {
         categories: [],
         definitions: [],
-        modalOpened: false
+        modalOpened: false,
+        loading: false
     }
 
     checkKeyEsc = (e) => {
@@ -22,6 +23,7 @@ export class WordList extends Component {
     closeModal = () => this.setState({ modalOpened: false })
 
     getWordDesc = (word) => {
+        this.setState({ loading: true });
         const categories = [];
         const definitions = [];
 
@@ -30,7 +32,7 @@ export class WordList extends Component {
                 categories.push(res.fl)
                 definitions.push(res.shortdef)
             })
-            this.setState({ categories, definitions }, console.log(categories, definitions))
+            this.setState({ categories, definitions, loading: false }, console.log(categories, definitions))
         })
     }
 
@@ -62,8 +64,12 @@ export class WordList extends Component {
                     {wordsList}
                 </ul>
                 <div className={modalOpened ? "backdrop" : "no-backdrop"}>
-                    <Definitions definitions={definitions} categories={categories}
-                        onClick={this.clearModal} />
+                    {this.state.loading ?
+                        <Spinner />
+                        :
+                        <Definitions definitions={definitions} categories={categories}
+                            onClick={this.clearModal} />
+                    }
                 </div>
             </div>
         )

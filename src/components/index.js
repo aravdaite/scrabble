@@ -1,5 +1,6 @@
 
 export * from './buttons/Button'
+export * from './spinner/Spinner'
 export * from './navigation/Logo'
 export * from './navigation/NavigationItem'
 export * from './navigation/Toolbar'

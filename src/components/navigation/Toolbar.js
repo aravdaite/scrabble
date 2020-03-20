@@ -1,5 +1,5 @@
 import React from 'react';
-import { Logo, NavigationItem } from '../../components'
+import { Logo, NavigationItem } from '../../components';
 
 export const Toolbar = () => (
     <header className="header">
@@ -10,7 +10,7 @@ export const Toolbar = () => (
         <nav className="navigation">
             <ul className="navigation-list">
                 <li><NavigationItem href="/">{"Game"}</NavigationItem></li>
-                <li><NavigationItem href="/">{"About"}</NavigationItem></li>
+                <li><NavigationItem href="/about">{"About"}</NavigationItem></li>
             </ul>
         </nav>
     </header>
