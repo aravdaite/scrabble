@@ -32,7 +32,7 @@ export class WordList extends Component {
                 categories.push(res.fl)
                 definitions.push(res.shortdef)
             })
-            this.setState({ categories, definitions, loading: false }, console.log(categories, definitions))
+            this.setState({ categories, definitions, loading: false })
         })
     }
 

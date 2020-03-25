@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button, WordList } from '../components';
 
-
 const vowels = 'AEIOUY';
 const consonants = 'BCDFGHJKLMNPQRSTVWXZ';
 const key = "ee45ee9d-510f-4b5e-81f1-7bb7f90d3ffe";
@@ -106,7 +105,7 @@ class Scrabble extends Component {
         if (word !== "") {
             return getWordData(word).then(res => {
                 //if dictionary returns at least one lexical category, it is a word
-                if (res[0].fl === undefined) {
+                if (res[0] === undefined || res[0].fl === undefined) {
                     this.setState({ isWord: false })
                 } else {
                     this.setState({ isWord: true })
@@ -198,9 +197,7 @@ class Scrabble extends Component {
     }
 
     getVowelNumber = () => {
-        const num = Math.random() < 0.5 ? Math.random() < 0.5 ? 2 : 4 : 3;
-        console.log(num);
-        return num;
+        return Math.random() < 0.5 ? Math.random() < 0.5 ? 2 : 4 : 3;
     }
 
     render() {
@@ -212,10 +209,12 @@ class Scrabble extends Component {
                     <div className={this.state.started ? "Scrabble__mainBox-started" : "Scrabble__mainBox"}>
                         <p className="Scrabble__title"> Create a word!</p>
                         <div className="Scrabble__WordBox">
+
                             {[...Array(7).keys()].map((index) =>
                                 <Button type="wordLetterCard"
                                     letter={this.state.word[index]}
                                     onClick={() => this.removeLetterFromWord(index)} />)}
+
                             <Button type="enter" onClick={this.enterWord} word={this.state.word[0]} clickable={this.state.isWord} />
                         </div>
                         <div className="Scrabble__LetterBox">
