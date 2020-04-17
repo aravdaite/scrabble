@@ -33,6 +33,10 @@ const getButtonType = ({ type = '', ...rest }) => {
         wordLetterCard: {
             className: rest.letter ? "Button__WordLetterCard" : "Button__WordLetterCard-empty",
             text: rest.letter
+        },
+        submit: {
+            className: "Button__submit",
+            text: "Submit"
         }
     }
     return buttonDictionary[type] || {}

@@ -1,19 +1,27 @@
+.closed{
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  padding: 10px;
+}
+.open{
+  height: 50px;
+  width: 50px;
+  background-color: white;
+  padding: 10px;
+}
 .body{
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 .header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100px;
+  display: inline;
   width: 100%;
   background-color: pink;
 }
 .logo-welcome{
   display: flex;
-
 }
 .Logo{
   margin: 10px;
@@ -32,18 +40,25 @@
   text-decoration: none;
   color: white;
 }
+.NavigationItem-active{
+  font-size: 24px;
+  margin: 10px 20px;
+  text-decoration: none;
+  color: white;
+  border-bottom: 2px solid white;
+}
 .navigation-link:hover{
   text-shadow: 1px 1px 1px white;
   cursor: pointer;
 }
 .navigation{
-  padding: 0 40px 0 0;
   display: flex;
-  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0 40px 0 0;
   height: 80%;
 }
 .navigation-list {
-  display: flex;
+display: flex;
   list-style-type: none;
   margin: 0;
   padding: 0 0 10px 0;
@@ -147,7 +162,6 @@ h3{
   display: inline;
   position: absolute;
   background-color: pink;
-  width: 50%;
   max-height: 80%;
   overflow-y: scroll;
 }
@@ -188,7 +202,6 @@ h3{
 .Button__start{
   font-size: 46px;
   color: white;
-  text-shadow: 1px 1px 1px white;
   border: 2px solid white;
   height: 25%;
   width: 20%;
@@ -353,6 +366,27 @@ cursor: pointer;
   box-shadow: 0 4px 5px 0 rgba(0,0,0,0.24), 0 4px 5px 0 rgba(0,0,0,0.19);
   cursor: pointer;
 }
+.Register{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-color: rgb(245, 126, 148);
+  width: auto;
+  height: 80vh;
+  padding: 50px;
+}
+.Input{
+  width: auto;
+  height: auto;
+  background-color: rgb(245, 126, 148);
+}
+.Input__inputField{
+  width: auto;
+  height: auto;
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+}
 
 .footer{
   display: flex;
@@ -387,18 +421,21 @@ cursor: pointer;
   }
 
   .header{
-      height: 80px;
+      height: auto;
     }
 
   .ToolbarText{
       font-size: 16px;
+      align-items: flex-start;
+      padding: 5% 0 0 0;
   }
   .NavigationItem{
       font-size: 18px;
+  
   }
 
   .navigation{
-      padding: 20px 0 0 0;
+      padding: 0;
   }
 
   h3{

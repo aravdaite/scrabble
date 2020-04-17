@@ -211,7 +211,7 @@ class Scrabble extends Component {
                         <div className="Scrabble__WordBox">
 
                             {[...Array(7).keys()].map((index) =>
-                                <Button type="wordLetterCard"
+                                <Button type="wordLetterCard" key={`${index.toString().concat(this.state.word[index])}`}
                                     letter={this.state.word[index]}
                                     onClick={() => this.removeLetterFromWord(index)} />)}
 
@@ -219,7 +219,8 @@ class Scrabble extends Component {
                         </div>
                         <div className="Scrabble__LetterBox">
                             {[...Array(7).keys()].map((index) =>
-                                <Button type="letterCard" letter={this.state.letters[index]}
+                                <Button type="letterCard" key={`${index.toString().concat(this.state.word[index])}`}
+                                    letter={this.state.letters[index]}
                                     onClick={() => this.putLetterToWord(index)} />)}
                             <Button type="shuffle" onClick={this.shuffleLetters} />
                         </div>
